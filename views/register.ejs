@@ -1,0 +1,23 @@
+<%-include("partials/header")%>
+<div class="container">
+	<div>
+		<div style="text-align: center;margin: 20px auto;">
+			<h2 >
+		     Sign Up
+		    </h2>
+		</div>
+
+        <div style="width: 30%; margin: 30px auto;">
+            <form action="/register" method="POST">
+	            <div class="form-group">
+	               <input class="form-control" type="text" name="username" placeholder="username">
+	               <input class="form-control" type="password" name="password" placeholder="password">
+	            </div>
+	            <button class="btn btn btn-info btn-block" type="submit">
+		             SignUp
+	             </button>
+           </form>
+        </div>
+	</div>
+</div>
+<%-include("partials/footer")%>

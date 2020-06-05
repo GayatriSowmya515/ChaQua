@@ -1,0 +1,82 @@
+<%-include("../partials/header")%>
+
+<div class="container" style="margin: 20px auto;">
+	<div class="card mt-5">
+		<div class="card-header" style="background-color: #ffffff;">
+			 <blockquote class="blockquote mb-0">
+				 <div class="blog">
+					<h3><b style="float: left;"><%=blog.title%></b></h3>
+	
+			<%if(currentUser && blog.author.id.equals(currentUser._id)){%>
+			   <div class="dropdown" style="float:right;">
+                     <button class="dropbtn p-1">></button>
+                     <div class="dropdown-content">
+
+	                     <a href="/blogs/<%=blog._id%>/edit" class="btn btn-outline-info btn-block" role="button">Edit</a>
+                         <form class="delete-form" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+							<input type="submit" class="btn btn-outline-info btn-block" value="Delete">
+						 </form>
+                      </div>
+                </div>
+			
+			<%}%>
+			</div>
+				 <footer class="blockquote-footer"><%=blog.author.username%></footer>
+			</blockquote>	
+		</div>
+		<div class="card-body">
+            <h5><%=blog.description%></h5>
+				 
+	    </div>
+		
+		
+		<div class="row card-body">
+			<div class="col-md-12 border-top">
+				<div class="input-group m-0">
+				<img src="https://image.shutterstock.com/image-vector/vector-silhouette-baby-on-white-600w-1664356444.jpg" alt="Avatar" class="avatar mr-2">
+					<form action="/blogs/<%=blog._id%>" method="POST">
+				<div class="form-group input-group m-3">
+					<input class="form-control" type="text" placeholder="Add comment" aria-label="Search" aria-describedby="button-addon2" name="comment[text]">
+					<div class="input-group-append">
+					  <button class="btn btn btn-outline-secondary" type="submit" id=button-addon2>Add</button>
+					</div>
+				</div>
+  			</form>
+				
+  </div>
+				</div>
+		
+			</div>
+			 <%for(var i=0;i<blog.comments.length;i++){%>
+	       	    
+				    <div class="col-md-12 border-top my-3">
+						<img src="https://image.shutterstock.com/image-vector/vector-silhouette-baby-on-white-600w-1664356444.jpg" alt="Avatar" class="avatar mr-2">
+			           <strong><%=blog.comments[i].author.username%></strong> 
+						<%if(currentUser && blog.comments[i].author.id.equals(currentUser._id)){%>
+						   <div class="dropdown" style="float:right;">
+  <button class="dropbtn p-1">></button>
+  <div class="dropdown-content">
+
+	  <a href="/blogs/<%=blog._id%>/comments/<%=blog.comments[i]._id%>/edit" class="btn btn-outline-info btn-block" role="button">Edit</a>
+    <form class="delete-form" action="/blogs/<%=blog._id%>/comments/<%=blog.comments[i]._id%>?_method=DELETE" method="POST">
+							<input type="submit" class="btn btn-outline-info btn-block" value="Delete">
+						</form>
+  </div>
+</div>
+						<%}%>
+			           <span class="pull-right"> -10 days ago</span>
+			           <p class="space"><%=blog.comments[i].text%></p>
+						
+					</div>
+			    
+			<%}%>
+		</div>
+	</div>
+
+
+
+
+
+
+
+<%-include("../partials/footer")%>

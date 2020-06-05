@@ -1,0 +1,27 @@
+<%-include("../partials/header")%>
+
+	 <div class="container" style="text-align: center;margin: 20px auto;">
+		 <%for(var i=0;i<blogs.length;i++){%>
+		 <div class="card m-5">
+			 <div class="card-header">
+				 <blockquote class="blockquote mb-0">
+				 <%=blogs[i].title%>
+				 <footer class="blockquote-footer"><%=blogs[i].author.username%></footer>
+				 </blockquote>
+			 </div>
+			 
+			 <div class="card-body">
+                    <p><%=blogs[i].description%></p>
+				 <a href="/blogs/<%=blogs[i].id%>">View Comments</a>
+			 </div>
+		 </div>
+		 
+		 <%}%>
+		 <div> </div>
+		 <a href="/blogs/new" class="btn btn-info">Add a Blog!!</a>
+		 
+     </div>
+
+
+
+<%-include("../partials/footer")%>

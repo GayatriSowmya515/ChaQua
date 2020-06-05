@@ -1,0 +1,25 @@
+<%-include("../partials/header")%>
+
+<div class="container">
+	<div>
+		<div style="text-align: center;margin: 20px auto;">
+			<h2 >
+		     Edit
+		    </h2>
+		</div>
+		
+		<div style="width: 30%; margin: 30px auto;">
+			<form action="/QA/<%= Ques._id%>?_method=PUT" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" value="<%=Ques.text%>" aria-label="Search" name="qas[text]">
+				</div>
+    			
+					<button class="btn btn btn-info btn-block" type="submit">Submit!</button>
+			  
+  			</form>
+			<a href="/QA/<%=Ques._id%>">Go Back</a>
+		</div>
+	</div>
+</div>
+
+<%-include("../partials/footer")%>

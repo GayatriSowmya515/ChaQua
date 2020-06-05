@@ -1,0 +1,27 @@
+<%-include("../partials/header")%>
+
+
+<div class="container">
+	<ul>
+		<%for(var i=0;i<messages.length;i++){%>
+		    <%if(name == messages[i].username){%>
+		<%}else{%>
+		     <li><%=messages[i].username%> 
+				 <form action="/messages/<%=Id%>/add-friend/<%=messages[i].id%>/<%=messages[i].username%>" method="POST">
+					 <button class="btn btn-info" type="submit">
+						 Add friend
+					 </button>
+				 </form>
+		    </li>
+		<%}}%>
+	</ul>
+</div>
+
+
+
+
+
+
+
+
+<%-include("../partials/footer")%>

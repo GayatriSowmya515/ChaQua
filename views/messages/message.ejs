@@ -1,0 +1,93 @@
+<%-include("../partials/header")%>
+
+
+
+
+<h1>
+	Chat box!!!
+</h1>
+
+<div class="wrapper container">
+		<div class="sidebar ">
+			
+			<ul>
+				<%for(var i=0;i<message.friends.length;i++){%>
+				<%if(name == message.friends[i].other_username){%>
+				<%}else{%>
+				<%var name1 = message.friends[i].other_username%>
+				    <li><a href="/messages/<%=message._id%>/chat/<%=message.friends[i]._id%>">Chat with <%=name1%></a></li>
+		        <%}}%>
+				<li><a href="/messages/<%=message._id%>/add-friend">Add Friend</a></li>
+				
+			</ul>
+		</div>
+		<div class="main_content container">
+		 	
+<%if(typeof(friend) !== "undefined"){%>
+			<script>
+	socket.on('message', addMessages)
+
+    function addMessages(message){
+        $("#name1").append("you");
+		$("#text1").append(" ${friend.chats[i].text}");
+    }
+	
+</script>
+<div class="chat">
+      <div class="chat-header clearfix">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
+        
+        <div class="chat-about">
+          <div class="chat-with">Chat with <%=friend.other_username%></div>
+        </div>
+        <i class="fa fa-star"></i>
+      </div> <!-- end chat-header -->
+	
+	<div class="chat-history">
+        <ul>
+			<%for(var i=0;i<friend.chats.length;i++){%>
+			   <li>
+				   <%if(friend.chats[i].username == name){%>
+				        <div class="message-data align-right">
+                           <div class="message-data-time" >10:10 AM, Today</div> &nbsp; &nbsp;
+                           <div class="message-data-name" id="name1" >you</div> <i class="fa fa-circle me"></i>
+              
+                        </div>
+                       <div class="message other-message float-right" id="text1">
+                          <%=friend.chats[i].text%>
+				       </div>
+				   <%}else{%>
+				       <div class="message-data align-right">
+                           <div class="message-data-time" >10:10 AM, Today</div> &nbsp; &nbsp;
+                           <div class="message-data-name" ><%=friend.chats[i].username%></div> <i class="fa fa-circle me"></i>
+              
+                        </div>
+                       <div class="message other-message float-left">
+                          <%=friend.chats[i].text%>
+				       </div>
+				   <%}%>
+			   </li>
+			     
+			<%}%>
+          
+		</ul>
+	</div>
+	<div class="chat-message clearfix">
+        
+		<form action="/messages/<%=message._id%>/chat/<%=friend._id%>" method="POST">
+		  <div class="form-group input-group m-3">
+				<input class="form-control" type="text" placeholder="send a message" aria-label="Search" aria-describedby="button-addon2" name="chat[text]">
+				<div class="input-group-append">
+				   <button class="btn btn btn-outline-secondary" type="submit" id=button-addon2>send</button>
+				</div>
+		  </div>
+		</form>
+                
+        
+
+      </div> <!-- end chat-message -->
+      
+    </div> <!-- end chat --><%}%>
+	</div>
+
+<%-include("../partials/footer")%>

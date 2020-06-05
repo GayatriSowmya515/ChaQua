@@ -1,0 +1,66 @@
+<%-include("../partials/header")%>
+
+ <div class="container" style="margin: 20px auto;">
+		     <div class="card m-5">
+			     <div class="card-header">
+				    <blockquote class="blockquote mb-0">
+						<div class="blog">
+							<h3>
+								<b style="float: left;"><%=Ques.text%></b>
+							</h3>
+							<%if(currentUser && Ques.author.id.equals(currentUser._id)){%>
+			                   <div class="dropdown" style="float:right;">
+                                  <button class="dropbtn p-1">></button>
+                                  <div class="dropdown-content">
+
+	                                 <a href="/QA/<%=Ques._id%>/edit" class="btn btn-outline-info btn-block" role="button">Edit</a>
+                                     <form class="delete-form" action="/QA/<%=Ques._id%>?_method=DELETE" method="POST"> 
+							              <input type="submit" class="btn btn-outline-info btn-block" value="Delete">
+						             </form>
+                                  </div>
+                               </div>
+							<%}%>
+					    </div>
+				        <footer class="blockquote-footer"><%=Ques.author.username%></footer>
+				    </blockquote>
+			     </div>
+					 <%for(var j=0; j<Ques.answers.length; j++){%>
+				      <div class="col-md-12 border-top my-3">
+						  <img src="https://image.shutterstock.com/image-vector/vector-silhouette-baby-on-white-600w-1664356444.jpg" alt="Avatar" class="avatar mr-2">
+			           <strong><%=Ques.answers[j].author.username%></strong>
+						  <%if(currentUser && Ques.answers[j].author.id.equals(currentUser._id)){%>
+						     <div class="dropdown" style="float:right;">
+                                 <button class="dropbtn p-1">></button>
+                                 <div class="dropdown-content">
+
+	                                  <a href="/QA/<%=Ques._id%>/answers/<%=Ques.answers[j]._id%>/edit" class="btn btn-outline-info btn-block" role="button">Edit</a>
+                                      <form class="delete-form" action="/QA/<%=Ques._id%>/answers/<%=Ques.answers[j]._id%>?_method=DELETE" method="POST">
+							             <input type="submit" class="btn btn-outline-info btn-block" value="Delete">
+						              </form>
+                                 </div>
+                             </div>
+						<%}%>
+						  <footer class="blockquote-footer space">Answered 10th May</footer>
+				         <div class="card-body" style="text-align: center;">
+							  
+                            <blockquote class="blockquote mb-0">
+				                <p><%=Ques.answers[j].text%></p>
+				                
+				            </blockquote>
+							 
+			             </div>
+						  <div style="text-align: center;">
+					<a href="/QA/<%=Ques._id%>/answers/<%=Ques.answers[j]._id%>">View Comments</a>
+				 </div>
+				 </div>
+		              <%}%>
+				<div style="text-align: center;">
+					<a href="/QA/<%=Ques._id%>/Anew">click here to answer this question</a>
+				 </div> 
+				 
+	             </div>
+    </div>
+
+
+
+<%-include("../partials/footer")%>

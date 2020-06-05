@@ -1,0 +1,25 @@
+<%-include("../partials/header")%>
+
+<div class="container">
+	<div>
+		<div style="text-align: center;margin: 20px auto;">
+			<h2 >
+			   Add a Question
+		    </h2>
+		</div>
+		
+		<div style="width: 30%; margin: 30px auto;">
+			<form action="/QA" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="Add Question" aria-label="Search" name="text">
+				</div>
+    			
+					<button class="btn btn btn-info btn-block" type="submit">Submit!</button>
+			  
+  			</form>
+			<a href="/QA">Go Back</a>
+		</div>
+	</div>
+</div>
+
+<%-include("../partials/footer")%>
