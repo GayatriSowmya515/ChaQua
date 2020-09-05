@@ -45,6 +45,7 @@ router.get("/:id",middleware.isLoggedIn,function(req,res){
 		}
 		else{
 			console.log("list :  " + message);
+			req.flash("add","friend request!!!");
 			res.render("messages/message",{message:message,Id:req.user._id,name:req.user.username});	
 		}
 	});
@@ -62,7 +63,25 @@ router.get("/:id/add-friend",function(req,res){
 	
 });
 
-
+router.post("/:id/add-friend/:friend_id/:name",middleware.isLoggedIn,function(req,res){
+	Message.findById(req.params.id, function(err, message){
+		if(err){
+			console.log("Error");
+		}
+		else{
+			Message.find({id:req.params.friend_id}, function(err,mess){
+				if(err){
+					console.log("Error!!!!!!!");
+				}
+				else{
+					mess.add_id = message.id;
+					mess.add_name = message.username;
+					res.redirect("/messages/"+req.params.id);
+				}
+			});
+		}
+	});
+});
 
 //add friend
 
@@ -126,8 +145,6 @@ router.get("/:id/chat/:friendid",middleware.isLoggedIn,function(req,res){
 			console.log(err);
 		}
 		else{
-			
-			
 			Friend.findById(req.params.friendid).populate("chats").exec(function(err,friend){
 				if(err){
 					console.log("ERROR!!!");

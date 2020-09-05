@@ -11,6 +11,17 @@
 		<div class="sidebar ">
 			
 			<ul>
+				<%if(message.add_id&&message.add_id.length>0){%>
+				  <%if(add&&add.length>0){%>
+		            <div class="alert alert-dark" role="alert">
+                       <%=add%>
+						<div>
+   						  <a class="btn btn-outline-light my-2 my-sm-0 r" href="/messages/<%=messages._id%>">Confirm</a>
+					      <a class="btn btn-outline-light my-2 my-sm-0 r" href="/messages/<%=messages._id%>">Delete</a>
+						</div>
+                    </div>
+		          <%}%>
+				<%}%>
 				<%for(var i=0;i<message.friends.length;i++){%>
 				<%if(name == message.friends[i].other_username){%>
 				<%}else{%>
@@ -57,7 +68,7 @@
                           <%=friend.chats[i].text%>
 				       </div>
 				   <%}else{%>
-				       <div class="message-data align-right">
+				       <div class="message-data align-left">
                            <div class="message-data-time" >10:10 AM, Today</div> &nbsp; &nbsp;
                            <div class="message-data-name" ><%=friend.chats[i].username%></div> <i class="fa fa-circle me"></i>
               

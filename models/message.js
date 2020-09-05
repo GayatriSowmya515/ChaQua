@@ -11,7 +11,8 @@ var messageSchema = new mongoose.Schema({
 	            type: mongoose.Schema.Types.ObjectId,
 				 ref:"Friend"
              }],
-	         
+	         add_id: String,
+	         add_name: String
 		
 });
 
